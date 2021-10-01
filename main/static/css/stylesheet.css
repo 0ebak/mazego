@@ -44,6 +44,7 @@ header {
     padding: 2em 10%;
     background: #2c3e50;
     color: #AFEEEE;
+    background-image: url ("main/static/css/evening.jpg")
 }
 
 header h1 {
