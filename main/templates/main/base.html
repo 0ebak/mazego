@@ -1,0 +1,37 @@
+<!doctype html>
+{% load static %}
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>{% block title %}{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'css/stylesheet.css'%}">
+</head>
+<body>
+    <header>
+        <h1>MazeGo</h1>
+        <nav><a href="/">Главная </a><a href="/about">О нас </a><a href="/game">Maze! </a><a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ&ab_channel=RickAstley">ОСТОРОЖНО!</a></nav>
+    </header>
+</body>
+    <div class="container">
+        <div class="row">
+            <div class="col-5">
+                <h2>Погода в вашем городе</h2>
+                <form action="">
+                    <label for="city">Город</label>
+                    <input type="text" id="city" name="city" placeholder="Введите город">
+                </form>
+            </div>
+            <div class="col-5 offset-2">
+                <h2>Информация</h2>
+                <div>
+                    <b>Город</b> {{ info.city }}<br>
+                    <b>Температура</b> {{ info.temp }}<sup>o</sup><br>
+                    <img src="http://openweathermap/org/img/w/{{ info.icon }}.png" alt="Фото погоды" class="img">
+                </div>
+            </div>
+        </div>
+    </div>
+</html>
