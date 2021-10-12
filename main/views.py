@@ -7,6 +7,9 @@ def index(request):
     url = "http://api.openweathermap.org/data/2.5/weather?q={}&units=metric&appid=" + appid
 
     city = "London"
+    if request.method == 'POST':
+        city = request.POST#breaks there
+
     res = requests.get(url.format(city)).json()
 
     city_info = {
