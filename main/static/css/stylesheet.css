@@ -42,9 +42,11 @@ header {
     letter-spacing: 1px;
     height: 8em;
     padding: 2em 10%;
-    background: #2c3e50;
     color: #AFEEEE;
-    background-image: url ("main/static/css/evening.jpg")
+
+    background: rgba(255, 0 ,0, 1);
+    background-size: contain;
+    border-radius: 15px;
 }
 
 header h1 {
@@ -64,4 +66,27 @@ header::after {
 a {
     color: #AFEEEE;
     padding: 0px 10px 0px 0px;
+}
+
+body {
+    padding: 30px
+}
+
+div.information {
+    margin: 30px;
+    height: 300px;
+    border-radius: 15px;
+    box-shadow: 0 0 10px #000;
+    background: rgba(255, 0, 0, 1)
+    overflow: auto;
+}
+h2 {
+    margin: 15px;
+    font-size: 25px;
+    font-family: fantasy;
+    color: red;
+}
+
+div.weather {
+    padding: 10px;
 }
