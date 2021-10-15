@@ -90,3 +90,10 @@ h2 {
 div.weather {
     padding: 10px;
 }
+
+#clock {
+    color: white;
+    margin-top: 30vh;
+    font-weight: bold;
+    font-size: 20vh;
+}
