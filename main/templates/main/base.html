@@ -14,7 +14,6 @@
         <h1>MazeGo</h1>
         <nav><a href="/">Главная </a><a href="/about">О нас </a><a href="/game">Maze! </a><a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ&ab_channel=RickAstley">ОСТОРОЖНО!</a></nav>
     </header>
-</body>
     <div class="container">
         <div class="row">
             <div class="col-5">
@@ -31,10 +30,26 @@
                 <div class="weather">
                     <b>Город</b> {{ info.city }}<br>
                     <b>Температура</b> {{ info.temp }}<sup>o</sup><br>
-                    <img src="http://openweathermap/org/img/w/{{ info.icon }}.png" alt="Фото погоды" class="img">
+                    <img src="http://openweathermap.org/img/w/{{ info.icon }}.png" alt="Фото погоды" class="img">
                 </div>
             </div>
         </div>
     </div>
-    <div class="ex"></div>
+    <div id="clock"></div>
+    <script>
+        window.onload = function() {
+            window.setInterval(function() {
+                var date = new Date();
+
+                var hours = date.getHours();
+                var minutes = date.getMinutes();
+                var seconds = date.getSeconds()
+
+                var clock = hours + ":" + minutes + ":" + seconds;
+                document.getElementById("clock").innerHTML = clock;
+            }
+            );
+        }
+    </script>
+</body>
 </html>

@@ -44,7 +44,7 @@ header {
     padding: 2em 10%;
     color: #AFEEEE;
 
-    background: rgba(255, 0 ,0, 1);
+    background: url('evening.jpg');
     background-size: contain;
     border-radius: 15px;
 }
@@ -89,4 +89,11 @@ h2 {
 
 div.weather {
     padding: 10px;
+}
+
+#clock {
+    color: white;
+    margin-top: 30vh;
+    font-weight: bold;
+    font-size: 20vh;
 }
