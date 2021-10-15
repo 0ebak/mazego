@@ -1,5 +1,6 @@
 import requests
 from django.shortcuts import render
+from translate import Translator
 
 
 def index(request):
@@ -8,7 +9,12 @@ def index(request):
 
     city = "London"
     if request.method == 'POST':
-        city = request.POST#breaks there
+        city = request.POST['city']
+    if city == "":
+        city = "London"
+
+    translator = Translator(from_lang='Russian', to_lang='English')
+    city = translator.translate(city)
 
     res = requests.get(url.format(city)).json()
 
