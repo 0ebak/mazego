@@ -1,5 +1,53 @@
-{% extends 'main/base.html' %}
+<!doctype html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Game</title>
+</head>
+<style>
+    body {
+        background: purple;
+    }
+    .pacman {
+        width: 50px;
+        height: 50px;
+        background: yellow;
+        border-radius: 30px;
+        box-shadow: 0 0 10px #000;
+        display: inline-block;
+    }
+    .wall {
+        width: 50px;
+        height: 50px;
+        background: blue;
+        box-shadow: 2px 0px 5px #000;
+        display: inline-block;
+    }
+    .food {
+        font-size: 40px;
+        width: 50px;
+        height: 50px;
+        text-align: center;
+        color: red;
+        display: inline-block;
+    }
 
-{% block title %}
-Игра
-{% endblock %}
+</style>
+<body>
+    <div class="wall"></div>
+    <div class="wall"></div>
+    <div class="wall"></div>
+    <div class="wall"></div>
+    <div class="wall"></div>
+    <br>
+    <div class="wall"></div>
+    <div class="pacman"></div>
+    <div class="food">*</div>
+</body>
+<script>
+
+</script>
+</html>
