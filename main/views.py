@@ -1,6 +1,8 @@
 import requests
 from django.shortcuts import render
 from translate import Translator
+from datetime import datetime
+import pytz
 
 
 def index(request):
@@ -35,3 +37,20 @@ def about(request):
 
 def game(request):
     return render(request, 'main/game.html')
+
+# функция для изменения фона в зависимости от времени
+def get_picture():
+    tz = pytz.timezone('Europe/Moscow')
+    current_datetime = datetime.now(tz)
+    print(current_datetime.hour)
+    if current_datetime.hour > 6 and current_datetime.hour < 12:
+        return "morning.jpg"
+    elif current_datetime.hour > 12 and current_datetime.hour < 18:
+        return "day12.jpg"
+    elif current_datetime.hour > 18:
+        return("evening.jpg")
+    else:
+        return "night.jpg"
+
+
+get_picture()
