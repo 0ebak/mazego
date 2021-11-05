@@ -4,7 +4,7 @@ from translate import Translator
 from datetime import datetime
 import pytz
 from bs4 import BeautifulSoup
-
+import json
 
 def index(request):
     appid = "b2b4026430f458f959496f2c559436d8"
@@ -54,11 +54,19 @@ def get_picture():
         return "night.jpg"
 
 
-def get_cinema():
-    url = 'https://afisha.yandex.ru/saint-petersburg/selections/cinema-today'
+def get_cinema(city):
+    url = 'https://afisha.yandex.ru/'+city.lower()+'/selections/all-events-cinema'
     response = requests.get(url)
     soup = BeautifulSoup(response.text, 'lxml')
-    cinemas = soup.find_all("script", type= "application/ld+json")
+    cinemas = soup.find_all('script', type="application/ld+json")
+    cinemas = json.loads(list(cinemas)[0].text)
     for cinema in cinemas:
-        print(cinema.text)
-get_cinema()
+        name = cinema['name']
+        try:
+            rating = cinema['aggregateRating']['ratingValue']
+            print(name, '-', rating)
+        except KeyError:
+            print(name, '- no rating', )
+
+
+get_cinema('Moscow')
