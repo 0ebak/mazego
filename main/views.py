@@ -3,6 +3,7 @@ from django.shortcuts import render
 from translate import Translator
 from datetime import datetime
 import pytz
+from bs4 import BeautifulSoup
 
 
 def index(request):
@@ -53,4 +54,11 @@ def get_picture():
         return "night.jpg"
 
 
-get_picture()
+def get_cinema():
+    url = 'https://afisha.yandex.ru/saint-petersburg/selections/cinema-today'
+    response = requests.get(url)
+    soup = BeautifulSoup(response.text, 'lxml')
+    cinemas = soup.find_all("script", type= "application/ld+json")
+    for cinema in cinemas:
+        print(cinema.text)
+get_cinema()
