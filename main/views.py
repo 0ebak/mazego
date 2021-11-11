@@ -9,6 +9,8 @@ def index(request):
     appid = "b2b4026430f458f959496f2c559436d8"
     url = "http://api.openweathermap.org/data/2.5/weather?q={}&units=metric&appid=" + appid
 
+    time_ref = "night.jpg"
+
     city = "London"
     if request.method == 'POST':
         city = request.POST['city']
@@ -42,15 +44,13 @@ def game(request):
 def get_picture():
     tz = pytz.timezone('Europe/Moscow')
     current_datetime = datetime.now(tz)
-    print(current_datetime.hour)
+
     if current_datetime.hour > 6 and current_datetime.hour < 12:
         return "morning.jpg"
     elif current_datetime.hour > 12 and current_datetime.hour < 18:
-        return "day12.jpg"
+        return "day.jpg"
     elif current_datetime.hour > 18:
         return("evening.jpg")
     else:
         return "night.jpg"
 
-
-get_picture()
