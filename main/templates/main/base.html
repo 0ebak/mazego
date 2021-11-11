@@ -8,8 +8,12 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>{% block title %}{% endblock %}</title>
     <link rel="stylesheet" href="{% static 'css/stylesheet.css'%}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css'%}">
 </head>
 <body>
+    <div id = "page-preloader" class="preloader">
+        <div class="loader"></div>
+    </div>
     <header>
         <h1>MazeGo</h1>
         <nav><a href="/">Главная </a><a href="/about">О нас </a><a href="/game">Maze! </a><a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ&ab_channel=RickAstley">ОСТОРОЖНО!</a></nav>
@@ -36,6 +40,7 @@
         </div>
     </div>
     <div id="clock"></div>
+    <div> {{time_ref}} </div>
     <script>
         window.onload = function() {
 
@@ -53,5 +58,7 @@
 
         }
     </script>
+    <script src="{% static 'js/preloader.js'%}"></script>
+
 </body>
 </html>

@@ -67,4 +67,4 @@ def get_cinema(city):
             print(name, '-', rating)
         except KeyError:
             print(name, '- no rating', )
-get_cinema('Moscow')
+
