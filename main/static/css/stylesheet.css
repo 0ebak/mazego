@@ -45,6 +45,8 @@ header {
     color: #AFEEEE;
 
     background: url("day.jpg");
+
+
     background-size: cover;
     border-radius: 15px;
 }
