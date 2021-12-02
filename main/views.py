@@ -10,7 +10,7 @@ def index(request):
     appid = "b2b4026430f458f959496f2c559436d8"
     url = "http://api.openweathermap.org/data/2.5/weather?q={}&units=metric&appid=" + appid
 
-    city = "London"
+    city = "Saint Petersburg"
     if request.method == 'POST':
         city = request.POST['city']
     if city == "":

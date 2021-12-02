@@ -5,6 +5,8 @@ export default class Group extends DisplayObject {
         super(props)
 
         this.container = new Set
+        this.offsetX = 0
+        this.offsetY = 0
     }
 
     get items () {
@@ -28,6 +30,10 @@ export default class Group extends DisplayObject {
     }
 
     draw (context) {
+        context.save()
+        context.translate(this.offsetX, this.offsetY)
         this.items.forEach(x => x.draw(context))
+        context.restore()
     }
+
 }
