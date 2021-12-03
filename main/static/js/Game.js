@@ -8,7 +8,6 @@ export default class Game {
 
         this.canvas.width = props.width ??  672
         this.canvas.height = props.height ?? 800
-        this.background = props.background ?? "black"
 
         this.pTimestamp = 0
         requestAnimationFrame(x => this.render(x))
@@ -23,8 +22,6 @@ export default class Game {
     drawBackground() {
         this.context.beginPath()
         this.context.rect(0, 0, this.canvas.width, this.canvas.height)
-        this.context.fillStyle = this.background
-        this.context.fill()
     }
 
     render (timestamp) {

@@ -10,32 +10,31 @@ import Text from './Text.js'
 const scale = 3
 
 export default async function main () {
+    const image = await loadImage('static/sets/spritesheet.png')
+    const atlas = await loadJSON('static/sets/atlas.json')
+
     const game = new Game({
-        width: 672,
-        height: 800,
-        background: 'black'
+        width: atlas.maze.width * scale + 500,
+        height: atlas.maze.height * scale + 50,
     })
 
     const party = new Group()
-    party.offsetY = 50
+    party.offsetY = 0
 
     game.stage.add(party)
 
     const state = new Text ({
-        x: 112 * scale,
-        y: 25,
+        x: atlas.maze.width * scale + 15,
+        y: 50,
         content: "0 очков",
-        fill: "white",
+        fill: "yellow",
     })
 
     state.points = 0
 
-    game.stage.add(state)
+    party.add(state)
 
     document.body.append(game.canvas)
-
-    const image = await loadImage('static/sets/spritesheet.png')
-    const atlas = await loadJSON('static/sets/atlas.json')
 
     const maze = new Sprite({
         image,
@@ -45,8 +44,8 @@ export default async function main () {
         height: atlas.maze.height * scale,
         frame: atlas.maze
     })
-    game.canvas.width = maze.width
-    game.canvas.height = maze.height
+//    game.canvas.width = maze.width
+//    game.canvas.height = maze.height
 
     let foods = atlas.maze.foods
         .map(food => ({
@@ -192,17 +191,24 @@ export default async function main () {
                     onEnd () {
                         pacman.stop()
                         party.remove(pacman)
-                    }
+                        const over = new Text ({
+                            x: atlas.maze.width / 2 * scale,
+                            y: ((atlas.maze.height / 2) - 5) * scale,
+                            align: "center",
+                            content: "Игра окончена, нажмите F5 для перезапуска!"
+                        })
+                        party.add(over)
+                        }
                     })
                 }
             }
 
-            if (haveCollision(pacman, leftPortal)) {
-            pacman.x = atlas.position.rightPortal.x * scale - pacman.width - 1
+            if (haveCollision(ghost, leftPortal)) {
+                ghost.x = atlas.position.rightPortal.x * scale - ghost.width - 1
             }
 
-            if (haveCollision(pacman, rightPortal)) {
-                pacman.x = atlas.position.leftPortal.x * scale + pacman.width + 1
+            if (haveCollision(ghost, rightPortal)) {
+                ghost.x = atlas.position.leftPortal.x * scale + ghost.width + 1
             }
         }
 
