@@ -22,8 +22,8 @@ export default async function main () {
     game.stage.add(party)
 
     const state = new Text ({
-        x: 250,
-        y: 100,
+        x: 112 * scale,
+        y: 25,
         content: "0 очков",
         fill: "white",
     })
@@ -172,24 +172,6 @@ export default async function main () {
                     ghost.nextDirection = getRandomFrom('up', 'down')
                 }
             }
-
-//            if (ghost.speedX === 0 && ghost.speedY === 0) {
-//                if (ghost.animation.name === 'up') {
-//                    ghost.nextDirection = getRandomFrom('left', 'right', 'down')
-//                }
-//
-//                else if (ghost.animation.name === 'down') {
-//                    ghost.nextDirection = getRandomFrom('left', 'right', 'up')
-//                }
-//
-//                else if (ghost.animation.name === 'right') {
-//                    ghost.nextDirection = getRandomFrom('left', 'up', 'down')
-//                }
-//
-//                else if (ghost.animation.name === 'left') {
-//                    ghost.nextDirection = getRandomFrom('up', 'right', 'down')
-//                }
-//            } smth wrong ?
 
             if (pacman.play && haveCollision(pacman, ghost)) {
                 if (ghost.isBlue) {

@@ -21,7 +21,7 @@ export function haveCollision (a, b) {
 
 
     for (const {x, y} of bPoints) {
-        if (a.x <= x && x <= a.x + a.width && a.y < =y && y <= a.y + a.height) {
+        if (a.x <= x && x <= a.x + a.width && a.y <= y && y <= a.y + a.height) {
             return true
         }
     }

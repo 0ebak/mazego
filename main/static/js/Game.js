@@ -6,8 +6,8 @@ export default class Game {
         this.context = this.canvas.getContext('2d')
         this.stage = new Group
 
-        this.canvas.width = props.width ??  50
-        this.canvas.height = props.height ?? 50
+        this.canvas.width = props.width ??  672
+        this.canvas.height = props.height ?? 800
         this.background = props.background ?? "black"
 
         this.pTimestamp = 0
