@@ -1,6 +1,5 @@
 import requests
 from django.shortcuts import render
-from translate import Translator
 from datetime import datetime
 import pytz
 from bs4 import BeautifulSoup
@@ -10,16 +9,12 @@ import re
 
 def index(request):
     appid = "b2b4026430f458f959496f2c559436d8"
-    url = "http://api.openweathermap.org/data/2.5/weather?q={}&units=metric&appid=" + appid
-
-    city = "Saint Petersburg"
+    url = "http://api.openweathermap.org/data/2.5/weather?q={}&units=metric&appid=" + appid +"&lang=ru"
+    city = "Санкт-Петербург"
     if request.method == 'POST':
         city = request.POST['city']
     if city == "":
         city = "London"
-
-    translator = Translator(from_lang='Russian', to_lang='English')
-    city = translator.translate(city)
 
     res = requests.get(url.format(city)).json()
 
@@ -86,6 +81,7 @@ def get_news(city, start):
                 news_list.append({'picture': picture, 'title': title, 'link': link})
         except IndexError:
             print("CAPTCHA")
+
 
 
 get_news('moscow', False)  # change False to True and it'll work
