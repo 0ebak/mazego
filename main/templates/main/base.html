@@ -14,7 +14,7 @@
     <div id = "page-preloader" class="preloader">
         <div class="loader"></div>
     </div>
-    <header>
+    <header id="header">
         <h1>MazeGo</h1>
         <nav><a href="/">Главная </a><a href="/about">О нас </a><a href="/game">Maze! </a><a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ&ab_channel=RickAstley">ОСТОРОЖНО!</a></nav>
     </header>
@@ -41,24 +41,7 @@
     </div>
     <div id="clock"></div>
     <div> {{time_ref}} </div>
-    <script>
-        window.onload = function() {
-
-            window.setInterval(function() {
-                var date = new Date();
-
-                var hours = date.getHours();
-                var minutes = date.getMinutes();
-                var seconds = date.getSeconds()
-
-                var clock = hours + ":" + minutes + ":" + seconds;
-                document.getElementById("clock").innerHTML = clock;
-            }
-            );
-
-        }
-    </script>
-    <script src="{% static 'js/preloader.js'%}"></script>
+    <script src="{% static 'js/Preloader.js'%}"></script>
 
 </body>
 </html>
