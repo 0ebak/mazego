@@ -43,11 +43,6 @@ header {
     height: 8em;
     padding: 2em 10%;
     color: #AFEEEE;
-
-    background: url("day.jpg");
-
-
-    background-size: cover;
     border-radius: 15px;
 }
 
@@ -102,7 +97,7 @@ div.weather {
 }
 
 input.get_button{
-    margin-top: 5px;
+    margin-top: 8px;
     display: block;
     height: 25px;
     width: 55px;
