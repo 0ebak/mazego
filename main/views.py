@@ -87,8 +87,6 @@ def get_cinema(city):
         return [{'image': 'image', 'title': 'title', 'description': 'argument', 'rating': 'rating'}]
 
 
-get_cinema('moscow')
-
 def get_news(city):
     url = 'https://yandex.ru/news/region/' + city
     response = requests.get(url)
