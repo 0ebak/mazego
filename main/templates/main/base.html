@@ -35,6 +35,39 @@
                     <b>Город</b> {{ info.city }}<br>
                     <b>Температура</b> {{ info.temp }}<sup>o</sup><br>
                     <img src="http://openweathermap.org/img/w/{{ info.icon }}.png" alt="Фото погоды" class="img">
+
+                </div>
+            </div>
+            <div class="news">
+                <h2>Новости в городе {{info.city}}</h2>
+                <div class="news">
+                    {% for new in news %}
+                    <img src="{{ new.picture }}" alt="Фото" class="img">
+                    <b>Новость: </b> {{ new.title }}<br>
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="currency">
+                <h2>Валюта</h2>
+                <div class="currency">
+                    {% for item in currency %}
+                    <b>{{item.current_code}}: </b>{{item.quantity}} {{item.name}} = {{item.value}} рублей<br>
+                    {% endfor %}
+
+
+                </div>
+            </div>
+                        </div>
+                        <div class="cinema">
+                <h2>Кино</h2>
+                <div class="cinema">
+                    {% for с in cinema %}
+                    <img src="{{ с.image }}" alt="Фото" class="img">
+                    <b>{{с.title}}: </b>{{с.description}}
+                    <b>Оценка: </b> {{с.rating}}<br>
+                    {% endfor %}
+
+
                 </div>
             </div>
         </div>

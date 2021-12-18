@@ -1,8 +1,8 @@
 import requests
 from django.shortcuts import render
-from translate import Translator
 from datetime import datetime
 import pytz
+from translate import Translator
 from bs4 import BeautifulSoup
 import json
 import re
@@ -10,16 +10,12 @@ import re
 
 def index(request):
     appid = "b2b4026430f458f959496f2c559436d8"
-    url = "http://api.openweathermap.org/data/2.5/weather?q={}&units=metric&appid=" + appid
-
-    city = "Saint Petersburg"
+    url = "http://api.openweathermap.org/data/2.5/weather?q={}&units=metric&appid=" + appid + "&lang=ru"
+    city = "Санкт-Петербург"
     if request.method == 'POST':
         city = request.POST['city']
     if city == "":
-        city = "London"
-
-    translator = Translator(from_lang='Russian', to_lang='English')
-    city = translator.translate(city)
+        city = "Лондон"
 
     res = requests.get(url.format(city)).json()
 
@@ -29,7 +25,13 @@ def index(request):
         'icon': res["weather"][0]["icon"]
     }
 
-    context = {"info": city_info}
+    translator = Translator(from_lang='Russian', to_lang='English')
+    city = translator.translate(city)
+    city = city.lower()
+    if city == 'st petersburg':
+        city = 'saint petersburg'
+    context = {"info": city_info, "news": get_news(city.replace('-', '_').replace(' ', '_')),
+               'currency': get_currency(["USD", "EUR", "KZT"]), 'cinema': get_cinema(city.replace(' ', '-'))}
 
     return render(request, 'main/index.html', context)
 
@@ -52,17 +54,17 @@ def get_picture():
     elif current_datetime.hour > 12 and current_datetime.hour < 18:
         return "day12.jpg"
     elif current_datetime.hour > 18:
-        return("evening.jpg")
+        return ("evening.jpg")
     else:
         return "night.jpg"
 
 
 def get_cinema(city):
-    url = 'https://afisha.yandex.ru/'+city.lower()+'/selections/all-events-cinema'
+    url = 'https://afisha.yandex.ru/' + city + '?source=menu-city'
     response = requests.get(url)
     soup = BeautifulSoup(response.text, 'lxml')
-    cinemas = soup.find_all('script', type="application/ld+json")
-    cinemas = json.loads(list(cinemas)[0].text)
+    cinemas = soup.find_all(class_="i-react event-card-react i-bem")
+    list_of_cinemas = []
     for cinema in cinemas:
         ivent = json.loads(cinema.get('data-bem'))['event-card-react']['props']
         if ivent['type'] == 'cinema':
@@ -123,4 +125,3 @@ def get_currency(code_list):
             final_list_of_currency.append({'current_code': current_code, 'quantity': quantity, 'name': name,
                                            'value': value})
     return final_list_of_currency
-
