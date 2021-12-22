@@ -31,7 +31,8 @@ def index(request):
     if city == 'st petersburg':
         city = 'saint petersburg'
     context = {"info": city_info, "news": get_news(city.replace('-', '_').replace(' ', '_')),
-               'currency': get_currency(["USD", "EUR", "KZT"]), 'cinema': get_cinema(city.replace(' ', '-'))}
+               'currency': get_currency(["USD", "EUR", "KZT"]), 'cinema': get_cinema(city.replace(' ', '-')),
+               'holiday': get_holiday()}
 
     return render(request, 'main/index.html', context)
 
@@ -75,7 +76,8 @@ def get_cinema(city):
         for i in 0, 1, 2:
             try:
                 finish_list.append({'image': list_of_cinemas[i]['image']['url'], 'title': list_of_cinemas[i]['title'],
-                                        'description': list_of_cinemas[i]['argument'], 'rating': list_of_cinemas[i]['rating']['value']})
+                                    'description': list_of_cinemas[i]['argument'],
+                                    'rating': list_of_cinemas[i]['rating']['value']})
             except TypeError:
                 finish_list.append({'image': list_of_cinemas[i]['image']['url'], 'title': list_of_cinemas[i]['title'],
                                     'description': list_of_cinemas[i]['argument'],
@@ -91,10 +93,14 @@ def get_news(city):
     url = 'https://yandex.ru/news/region/' + city
     response = requests.get(url)
     soup = BeautifulSoup(response.text, 'lxml')
+    checking = soup.find('h2', class_='mg-story-not-found__title') is not None
+    error = 1
+    if checking:
+        error = 0
     list_of_pictures = soup.find_all("div", class_="mg-card__media-block mg-card__media-block_type_image")[:4]
     list_of_pictures = list_of_pictures[:4]
     list_of_links = soup.find_all(class_="mg-card__text")[:4]
-    list_of_titles = soup.find_all("h2", class_="mg-card__title")[1:5]
+    list_of_titles = soup.find_all("h2", class_="mg-card__title")[error: 4 + error]
     news_list = []
 
     try:
@@ -126,3 +132,16 @@ def get_currency(code_list):
                                            'value': value})
     return final_list_of_currency
 
+
+def get_holiday():
+    url = 'https://www.calend.ru/'
+    response = requests.get(url)
+    soup = BeautifulSoup(response.text, 'lxml')
+    list_of_holidays = soup.find_all("div", class_="wrapIn")
+    today = list_of_holidays[0].text.split("...")[0][2:-4]
+    tomorrow = list_of_holidays[1].text.split("...")[0][2:-4]
+    finish_list =[]
+    finish_list.append({'today': today})
+    finish_list.append({'tomorrow': tomorrow})
+    return finish_list
+print(get_holiday())
