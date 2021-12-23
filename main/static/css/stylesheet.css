@@ -42,14 +42,16 @@ header {
     letter-spacing: 1px;
     height: 8em;
     padding: 2em 10%;
-    color: #AFEEEE;
     border-radius: 15px;
+    box-shadow: 0 0 10px #000;
+    color: #4B0082;
 }
 
 header h1 {
     display: inline-block;
     font-size: 40px;
 }
+
 header nav {
     display: inline-block;
 }
@@ -61,51 +63,220 @@ header::after {
 }
 
 a {
-    color: #AFEEEE;
     padding: 0px 10px 0px 0px;
 }
 
 body {
-    padding: 30px
+    padding: 30px;
+    font-family: Bradley Hand, cursive;
 }
 
-div.information {
-    margin: 30px;
-    height: 300px;
-    border-radius: 15px;
-    box-shadow: 0 0 10px #000;
-    background: rgba(255, 0, 0, 1)
-    overflow: auto;
-    width: 30%;
+.container {
+	width: 100%;
+	height: 100%;
 }
+
 h2 {
     margin: 15px;
-    font-size: 25px;
-    font-family: fantasy;
-    color: red;
+    font-size: 32px;
+    color: #4B0082;
+}
+
+h2.city-news {
+    text-align: center;
 }
 
 div.weather {
-    padding: 10px;
+    margin: 10px;
 }
 
 #clock {
-    color: black;
-    margin-top: 30px;
     font-weight: bold;
+
     font-size: 20px;
+    padding-top: 15px;
+    display: inline-block;
+}
+
+label {
+	margin-left: 10px;
 }
 
 input.get_button{
-    margin-top: 8px;
+    margin: 10px;
     display: block;
     height: 25px;
     width: 55px;
-    background: rgba(0, 0, 0, 0.5)
+    background: rgba(255, 255, 255, 0.5);
+    border-radius: 15px;
 }
 
 input.get_button:hover{
     color: white;
     box-shadow: 0 0 10px #000;
     background: rgba(0, 0, 0, 0.7);
+}
+
+.right {
+	float: right;
+}
+
+.city {
+    margin: 30px;
+    height: 150px;
+    border-radius: 15px;
+    box-shadow: 0 0 10px #000;
+    background: rgba(255, 0, 0, 1)
+    overflow: auto;
+    width: 300px;
+}
+
+.information {
+    margin: 30px;
+    height: 150px;
+    border-radius: 15px;
+    box-shadow: 0 0 10px #000;
+    background: rgba(255, 0, 0, 1)
+    overflow: auto;
+    width: 300px;
+}
+
+.currency {
+    margin: 30px;
+    height: 150px;
+    border-radius: 15px;
+    box-shadow: 0 0 10px #000;
+    background: rgba(255, 0, 0, 1)
+    overflow: auto;
+    width: 300px;
+}
+
+.currency-item {
+	margin: 10px;
+	position: absolute;
+	width: 250px;
+}
+
+#city {
+    background: rgba(255, 255, 255, 0.5);
+    border-radius: 15px;
+}
+
+.img {
+    border-radius: 45px;
+	max-width: 100%;
+}
+
+.cinema {
+	padding-right: 20px;
+	margin: auto;
+	display: inline-block;
+	max-width: 30%;
+}
+
+.content {
+	padding-top: 15px;
+	padding-right: 20px;
+	position: absolute;
+	height: 50px;
+	max-width: 30%
+}
+
+.cinemas {
+	position: absolute;
+	bottom: -200px;
+	width: 100%;
+}
+
+.left {
+    width: 70%;
+}
+
+.news {
+    width: 80%;
+    padding-left: 5%;
+}
+
+.slideshow-container {
+    padding-top: 10px;
+    width: 100%;
+    position: relative;
+    margin: auto;
+}
+
+.slides {
+    max-width: 100%
+}
+
+.prev, .next {
+    cursor: pointer;
+    position: absolute;
+    top: 50%
+    width: auto;
+    margin-top: -22px;
+    padding: 16px;
+    color: white;
+    font-weight: bold;
+    font-size: 18px;
+    transition: 0.6s ease;
+    border-radius: 0 3px 3px 0;
+}
+
+.next {
+    right: 0;
+    border-radius: 3px 0 0 3px;
+}
+
+.prev:hover, .next:hover {
+    background-color: rgba(0,0,0,0.8)
+}
+
+.imgdiv {
+    height: 100%;
+    width: 50%;
+    display: inline-block;
+}
+
+.imgdiv img {
+    float: right;
+}
+
+.text {
+    padding: 8px 12px;
+    max-width: 300px;
+    display: inline-block;
+}
+
+.dot {
+    cursor: pointer;
+    height: 13px;
+    width: 13px;
+    margin: 0 2px;
+    background-color: #4B0082;
+    border-radius: 50%;
+    display: inline-block;
+    transition: background-color 0.6s ease;
+}
+
+.active, .dot:hover {
+    background-color: #717171;
+}
+
+.fade {
+    -webkit-animation-name: fade;
+    -webkit-animation-duration: 1.5s;
+    animation-name: fade;
+    animation-duration: 1.5s;
+    -o-animation-name: fade;
+    -o-animation-duration: 1.5s;
+}
+
+@-webkit-keyframes fade {
+    from{opacity: 0.4}
+    to{opacity: 1}
+}
+
+@keyframes fade {
+    from{opacity: 0.4}
+    to{opacity: 1}
 }
