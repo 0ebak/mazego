@@ -45,21 +45,6 @@ def game(request):
     return render(request, 'main/game.html')
 
 
-# функция для изменения фона в зависимости от времени
-def get_picture():
-    tz = pytz.timezone('Europe/Moscow')
-    current_datetime = datetime.now(tz)
-    print(current_datetime.hour)
-    if current_datetime.hour > 6 and current_datetime.hour < 12:
-        return "morning.jpg"
-    elif current_datetime.hour > 12 and current_datetime.hour < 18:
-        return "day12.jpg"
-    elif current_datetime.hour > 18:
-        return ("evening.jpg")
-    else:
-        return "night.jpg"
-
-
 def get_cinema(city):
     url = 'https://afisha.yandex.ru/' + city + '?source=menu-city'
     response = requests.get(url)
@@ -75,18 +60,18 @@ def get_cinema(city):
         finish_list = []
         for i in 0, 1, 2:
             try:
-                finish_list.append({'image': list_of_cinemas[i]['image']['url'], 'title': list_of_cinemas[i]['title'],
+                finish_list.append({'image': list_of_cinemas[i]['image']['retina']['2x'], 'title': list_of_cinemas[i]['title'],
                                     'description': list_of_cinemas[i]['argument'],
                                     'rating': list_of_cinemas[i]['rating']['value']})
             except TypeError:
-                finish_list.append({'image': list_of_cinemas[i]['image']['url'], 'title': list_of_cinemas[i]['title'],
+                finish_list.append({'image': list_of_cinemas[i]['image']['retina']['2x'], 'title': list_of_cinemas[i]['title'],
                                     'description': list_of_cinemas[i]['argument'],
                                     'rating': 'No'})
-
         return finish_list
     except IndexError:
         print("\nCAPTCHA at cinema\n")
-        return [{'image': 'image', 'title': 'title', 'description': 'argument', 'rating': 'rating'}]
+        return [{'image': 'image', 'title': 'title', 'description': 'description', 'rating': 'rating'}]
+
 
 
 def get_news(city):

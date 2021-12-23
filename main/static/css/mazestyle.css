@@ -5,3 +5,23 @@ body {
 div {
     font-size: 100px;
 }
+
+a {
+    display: block;
+    font-family: Bradley Hand, cursive;
+    height: 40px;
+    width: 75px;
+    color: rgb(0, 0, 0);
+    background: rgba(255, 247, 8, 1);
+    font-size: 20px;
+    border-radius: 15px;
+    text-decoration: none;
+    text-align: center;
+    right: 50px;
+    bottom: 50px;
+    position: absolute;
+}
+
+a:hover {
+    background: rgba(255, 247, 8, 0.5);
+}

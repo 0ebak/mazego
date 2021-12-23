@@ -10,18 +10,18 @@
     <link rel="stylesheet" href="{% static 'css/stylesheet.css'%}">
     <link rel="stylesheet" type="text/css" href="{% static 'css/style.css'%}">
 </head>
-<body>
+<body id="body">
     <div id = "page-preloader" class="preloader">
         <div class="loader"></div>
     </div>
     <header id="header">
         <h1>MazeGo</h1>
-        <nav><a href="/">Главная </a><a href="/about">О нас </a><a href="/game">Maze! </a><a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ&ab_channel=RickAstley">ОСТОРОЖНО!</a></nav>
+        <nav><a href="/">Главная </a><a href="/game">Maze! </a><a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ&ab_channel=RickAstley">ОСТОРОЖНО!</a></nav>
     </header>
     <div class="container">
-        <div class="row">
-            <div class="col-5">
-                <h2>Погода в вашем городе</h2>
+        <div class="right">
+            <div class="city">
+                <h2 class="inputcity">Введите ваш город</h2>
                 <form action="" method="post">
                     {% csrf_token %}
                     <label for="city">Город</label>
@@ -30,7 +30,7 @@
                 </form>
             </div>
             <div class="information">
-                <h2>Информация</h2>
+                <h2>Погода</h2>
                 <div class="weather">
                     <b>Город</b> {{ info.city }}<br>
                     <b>Температура</b> {{ info.temp }}<sup>o</sup><br>
@@ -73,11 +73,58 @@
 
                 </div>
             </div>
+            <div class="currency">
+                <h2>Валюты</h2>
+                <div class="currency-item">
+                    {% for item in currency %}
+                    <b>{{item.current_code}}: </b>{{item.quantity}} {{item.name}} = {{item.value}} рублей<br>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+        <div class="left">
+            <h2 id="clock"></h2>
+            <div> {{time_ref}} </div>
+            <div class="news">
+                <h2 class="city-news">Новости в городе {{info.city}}</h2>
+                <div class="slideshow-container">
+                    {% for new in news %}
+                    <div class="slides fade">
+                        <div class="imgdiv">
+                            <img src="{{ new.picture }}" alt="Фото" class="img">
+                        </div>
+
+                        <div class="text">
+                        <b>Новость: </b> {{ new.title }}
+                        </div>
+                    </div>
+                    {% endfor %}
+                    <a class="prev" onclick="plusSlide(-1)">&#10094</a>
+                    <a class="next" onclick="plusSlide(1)">&#10095</a>
+                </div>
+                <br>
+
+                <div style="text-align: center">
+                    <span class="dot" onclick="currentSlide(1)"></span>
+                    <span class="dot" onclick="currentSlide(2)"></span>
+                    <span class="dot" onclick="currentSlide(3)"></span>
+                    <span class="dot" onclick="currentSlide(4)"></span>
+                </div>
+            </div>
+        </div>
+        <div class="cinemas">
+            <h2>Кино</h2>
+            {% for с in cinema %}
+            <div class="cinema">
+                <img src="{{ с.image }}" alt="Фото" class="img">
+                <div class="content">
+                    <b>{{с.title}}: </b>{{с.description}}<br>
+                    <b>Оценка: </b> {{с.rating}}<br>
+                </div>
+            </div>
+            {% endfor %}
         </div>
     </div>
-    <div id="clock"></div>
-    <div> {{time_ref}} </div>
-    <script src="{% static 'js/Preloader.js'%}"></script>
-
+    <script src="{% static 'js/index_main.js'%}"></script>
 </body>
 </html>
