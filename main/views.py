@@ -67,11 +67,11 @@ def get_cinema(city):
                 finish_list.append({'image': list_of_cinemas[i]['image']['retina']['2x'], 'title': list_of_cinemas[i]['title'],
                                     'description': list_of_cinemas[i]['argument'],
                                     'rating': 'No'})
+
         return finish_list
     except IndexError:
         print("\nCAPTCHA at cinema\n")
         return [{'image': 'image', 'title': 'title', 'description': 'description', 'rating': 'rating'}]
-
 
 
 def get_news(city):
